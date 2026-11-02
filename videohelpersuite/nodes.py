@@ -868,9 +868,9 @@ class BatchManager:
             requeue = 0
         if requeue == 0:
             self.reset()
-            self.frames_per_batch = frames_per_batch
-            self.unique_id = unique_id
-        else:
+        self.frames_per_batch = frames_per_batch
+        self.unique_id = unique_id
+        if requeue != 0:
             num_batches = (self.total_frames+self.frames_per_batch-1)//frames_per_batch
             print(f'Meta-Batch {requeue}/{num_batches}')
         #onExecuted seems to not be called unless some message is sent
